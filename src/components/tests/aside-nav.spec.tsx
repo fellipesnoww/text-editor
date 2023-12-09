@@ -13,34 +13,34 @@ jest.mock('react-router', () => ({
     useNavigate: () => mockNavigate
 }))
 
+const renderAsideComponent = () => {
+    const queryClient = new QueryClient();
+
+    render(
+        <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+            <AsideNav />
+        </QueryClientProvider>
+        </BrowserRouter>
+    );
+
+    return { queryClient }
+}
+
 describe("AsideNav", () => {
     it("should render correctly", () => {
-        const queryClient = new QueryClient();
-        render(
-            <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <AsideNav />
-            </QueryClientProvider>
-            </BrowserRouter>
-        )
+        renderAsideComponent();
 
         expect(screen.getByText("All files")).toBeInTheDocument();
         expect(screen.getByText("Favorites")).toBeInTheDocument();
         expect(screen.getByText("New")).toBeInTheDocument();
     });
 
-    //TODO: ABORDAR RETORAÇÃO
-    // TODO: explicar o que vem do jest e o que vem da testing library
-    // TODO: explicar o for each
+    //TODO: ABORDAR REFATORAÇÃO [x]
+    // TODO: explicar o que vem do jest e o que vem da testing library []
+    // TODO: explicar o for each []
     it("should call navigate with correct params", () => {
-        const queryClient = new QueryClient();
-        render(
-            <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <AsideNav />
-            </QueryClientProvider>
-            </BrowserRouter>
-        )
+        renderAsideComponent();
 
         const btnAllFiles = screen.getByText("All files")
 
@@ -51,14 +51,7 @@ describe("AsideNav", () => {
     })
 
     it.each([["All files", "/"], ["Favorites", "/favorites"]])("testings %s", (text, path) => {
-        const queryClient = new QueryClient();
-        render(
-            <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <AsideNav />
-            </QueryClientProvider>
-            </BrowserRouter>
-        )
+        renderAsideComponent();
 
         const btn = screen.getByText(text);
 
