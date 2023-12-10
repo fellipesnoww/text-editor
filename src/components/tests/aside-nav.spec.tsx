@@ -38,7 +38,7 @@ describe("AsideNav", () => { //Comes from jest - Description from all tests from
 
     //TODO: ABORDAR REFATORAÇÃO [x]
     // TODO: explicar o que vem do jest e o que vem da testing library [x]
-    // TODO: explicar o for each []
+    // TODO: explicar o for each [x]
     it("should call navigate with correct params", () => {
         renderAsideComponent();
 
@@ -50,6 +50,7 @@ describe("AsideNav", () => { //Comes from jest - Description from all tests from
         expect(mockNavigate).toHaveBeenCalledWith("/");// and expected function to be called passing "/" as parameter
     })
 
+    //Create a foreach loop, passing iteration values as parameter 
     it.each([["All files", "/"], ["Favorites", "/favorites"]])("testings %s", (text, path) => {
         renderAsideComponent();
 
